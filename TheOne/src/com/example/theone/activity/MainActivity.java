@@ -1,4 +1,7 @@
-package com.example.theone;
+package com.example.theone.activity;
+
+import com.example.theone.R;
+import com.example.theone.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
