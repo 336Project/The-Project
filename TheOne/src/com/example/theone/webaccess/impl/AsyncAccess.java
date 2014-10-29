@@ -4,38 +4,31 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import com.example.theone.util.JsonUtil;
+import com.example.theone.util.LogUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 
 /***
- * 搜索相关接口访问类
+ * 接口访问类
  * 
- * @author ZhongY
  * @Create_date 2014-07-09
  * 
  */
 public class AsyncAccess extends BaseAccess {
-	public final String HOST = "http://10.1.1.230:8080";
-	
-	public static final String BASE_URL="http://10.1.1.22:8080/hczd-sys/services/";
-	public static final String BASE_TMS_URL="http://10.1.1.154:8088/hczd-tms/services/";
-	public static final String BASE_VEH_URL="http://10.1.1.17:8080/hczd-sys/services/";
+	public static final String BASE_URL="";
 	public static final String GET_DATA_FALSE="获取数据失败";
 	public static final int CONN_TIMES=1;
-	public final String SOURCE="APP";
 	
-	private final String TAG = "AAB_Access";
 	private final String RESULT_KEY = "result";
 	private final String RESULT_DATA_NULL = "暂无相关数据";
 	
 	private Handler mHadnler;
 	private ExecutorService mExcutorService;// 线程池
 	/**
-	 *  构造函数，无线程池
+	 *  构造函数，无线程池(优先使用这个)
 	 * @param clazz 目标类
 	 * @param listener 回调监听器
 	 */
@@ -45,8 +38,8 @@ public class AsyncAccess extends BaseAccess {
 			public boolean handleMessage(Message msg) {
 				if (msg.what == 1) {
 					String strResult = msg.getData().getString(RESULT_KEY);
-					Log.i(TAG, strResult);
 					if(!"{}".equals(strResult)){
+						LogUtil.v(getClass(), strResult);
 						if(clazz!=null){
 							Object objResult = JsonUtil.jsonToBean(strResult, clazz);
 							listener.getAccessResult(true, objResult, null);
@@ -76,8 +69,8 @@ public class AsyncAccess extends BaseAccess {
 			public boolean handleMessage(Message msg) {
 				if (msg.what == 1) {
 					String strResult = msg.getData().getString(RESULT_KEY);
-					Log.i(TAG, strResult);
 					if(!"{}".equals(strResult)){
+						LogUtil.v(getClass(), strResult);
 						if(clazz!=null){
 							Object objResult = JsonUtil.jsonToBean(strResult, clazz);
 							listener.getAccessResult(true, objResult, null);
@@ -104,7 +97,6 @@ public class AsyncAccess extends BaseAccess {
 			public boolean handleMessage(Message msg) {
 				if (msg.what == 1) {
 					String strResult = msg.getData().getString(RESULT_KEY);
-					Log.i(TAG, strResult);
 					listener.getAccessResult(true, strResult, null);
 				} else {
 					listener.getAccessResult(false, null, GET_DATA_FALSE);
@@ -124,10 +116,8 @@ public class AsyncAccess extends BaseAccess {
 
 			@Override
 			public boolean handleMessage(Message msg) {
-				// TODO Auto-generated method stub
 				if (msg.what == 1) {
 					String strResult = msg.getData().getString(RESULT_KEY);
-					Log.i(TAG, strResult);
 					listener.getAccessResult(true, strResult, null);
 				} else {
 					listener.getAccessResult(false, null, GET_DATA_FALSE);
@@ -188,7 +178,6 @@ public class AsyncAccess extends BaseAccess {
 				int connTimes = CONN_TIMES;
 				while(connTimes>=0){
 					String strResult = postRequest(accessUrl, params);
-					Log.e("", ""+strResult);
 					if (!TextUtils.isEmpty(strResult)) {
 						Bundle bundle = new Bundle();
 						bundle.putString(RESULT_KEY, strResult);

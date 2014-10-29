@@ -18,6 +18,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import com.example.theone.util.LogUtil;
+
 /**
  * 数据加载基类
  * @author 魏天武
@@ -64,6 +66,7 @@ public class BaseAccess {
     	        List<NameValuePair> params = new ArrayList<NameValuePair>();
     	        for (String key : rawParams.keySet()) {
     	            // 封装请求参数
+    	        	LogUtil.v(BaseAccess.class, rawParams.get(key));
     	            params.add(new BasicNameValuePair(key, rawParams.get(key)));
     	        }
     	        // 设置请求参数
