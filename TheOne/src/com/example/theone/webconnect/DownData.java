@@ -23,21 +23,21 @@ import android.os.Message;
 import android.util.Log;
 
 /**
- * Í¨¹ıaction½øĞĞ½»»¥
- * @author ÎºÌìÎä
+ * Í¨ï¿½ï¿½actionï¿½ï¿½ï¿½Ğ½ï¿½ï¿½ï¿½
+ * @author Îºï¿½ï¿½ï¿½ï¿½
  * @version 
- * @create_date 2014-10-29 ÉÏÎç9:38:56
+ * @create_date 2014-10-29 ï¿½ï¿½ï¿½ï¿½9:38:56
  */
 public class DownData {
-	// ´´½¨HttpClient¶ÔÏó
+	// åˆ›å»ºHttpClientå¯¹è±¡
     public static HttpClient httpClient = new DefaultHttpClient();
     
-    public Handler mHandler;//·µ»Ø²éÑ¯½á¹û
-    public String url;//·ÃÎÊÊı¾İµÄµØÖ·
-    private Map<String,String> rawParams;//Òª½øĞĞÊäÈëµÄ²ÎÊı
+    public Handler mHandler;//å°†è·å–çš„æ•°æ®è¿›è¡Œä¼ è¾“å‡ºå»çš„handler
+    public String url;//è¦è¿›è¡Œè®¿é—®çš„åœ°å€Ö·
+    private Map<String,String> rawParams;//éœ€è¦è¿›è¡Œä¼ è¾“çš„å‚æ•°mapå¯¹è±¡
  
     /**
-     * Ã»ÓĞ²ÎÊıÊ±µ÷ÓÃ
+     * ä¸éœ€è¦å‚æ•°çš„ï¼Œurlè®¿é—®
      * @param url
      * @param mHandler
      */
@@ -53,7 +53,7 @@ public class DownData {
     }
     
     /**
-     * ÓĞ²ÎÊıÊ±½øĞĞµ÷ÓÃ
+     * éœ€è¦å‚æ•°çš„ url è®¿é—®
      * @param url
      * @param rawParams
      * @param mHandler
@@ -69,11 +69,12 @@ public class DownData {
 			Log.e("", "Exception:"+e.toString());
 		}
     }
+
     /**
      * 
      * @param url
-     *            ·¢ËÍÇëÇóµÄURL
-     * @return ·şÎñÆ÷ÏìÓ¦×Ö·û´®
+     *            å‘é€è¯·æ±‚çš„URL
+     * @return æœåŠ¡å™¨å“åº”å­—ç¬¦ä¸²
      * @throws Exception
      */
     public void getRequest(){
@@ -82,19 +83,19 @@ public class DownData {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				// ´´½¨HttpGet¶ÔÏó¡£
+				// åˆ›å»ºHttpGetå¯¹è±¡ã€‚
 		        HttpGet get = new HttpGet(url);
-		        // ·¢ËÍGETÇëÇó
+		        // å‘é€GETè¯·æ±‚
 		        HttpResponse httpResponse;
 				try {
 					httpResponse = httpClient.execute(get);
-					// Èç¹û·şÎñÆ÷³É¹¦µØ·µ»ØÏìÓ¦
+					// å¦‚æœæœåŠ¡å™¨æˆåŠŸåœ°è¿”å›å“åº”
 			        if (httpResponse.getStatusLine().getStatusCode() == 200) {
-			            // »ñÈ¡·şÎñÆ÷ÏìÓ¦×Ö·û´®
+			        	// è·å–æœåŠ¡å™¨å“åº”å­—ç¬¦ä¸²
 			            String result = EntityUtils.toString(httpResponse.getEntity());
 			            successOrFail(1, result);
 			        } else {
-			            successOrFail(0, "·şÎñÆ÷ÏìÓ¦´úÂë:"+httpResponse.getStatusLine().getStatusCode());
+			            successOrFail(0, "æœåŠ¡å™¨å“åº”ä»£ç :"+httpResponse.getStatusLine().getStatusCode());
 			        }
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
@@ -110,10 +111,10 @@ public class DownData {
     /**
      * 
      * @param url
-     *            ·¢ËÍÇëÇóµÄURL
+     *            å‘é€è¯·æ±‚çš„URL
      * @param params
-     *            ÇëÇó²ÎÊı
-     * @return ·şÎñÆ÷ÏìÓ¦×Ö·û´®
+     *            è¯·æ±‚å‚æ•°
+     * @return æœåŠ¡å™¨å“åº”å­—ç¬¦ä¸²
      * @throws Exception
      */
     public void postRequest() {
@@ -122,22 +123,22 @@ public class DownData {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				// ´´½¨HttpPost¶ÔÏó¡£
+				// åˆ›å»ºHttpPostå¯¹è±¡ã€‚
 		        HttpPost post = new HttpPost(url);
-		        // Èç¹û´«µİ²ÎÊı¸öÊı±È½Ï¶àµÄ»°¿ÉÒÔ¶Ô´«µİµÄ²ÎÊı½øĞĞ·â×°
+		        // å¦‚æœä¼ é€’å‚æ•°ä¸ªæ•°æ¯”è¾ƒå¤šçš„è¯å¯ä»¥å¯¹ä¼ é€’çš„å‚æ•°è¿›è¡Œå°è£…×°
 		        List<NameValuePair> params = new ArrayList<NameValuePair>();
 		        for (String key : rawParams.keySet()) {
-		            // ·â×°ÇëÇó²ÎÊı
+		        	// å°è£…è¯·æ±‚å‚æ•°
 		            params.add(new BasicNameValuePair(key, rawParams.get(key)));
 		        }	
-		        // ÉèÖÃÇëÇó²ÎÊı
+		        // è®¾ç½®è¯·æ±‚å‚æ•°
 		        try {
 					post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-					// ·¢ËÍPOSTÇëÇó
+					// å‘é€POSTè¯·æ±‚
 			        HttpResponse httpResponse = httpClient.execute(post);
-			        // Èç¹û·şÎñÆ÷³É¹¦µØ·µ»ØÏìÓ¦
+			        // å¦‚æœæœåŠ¡å™¨æˆåŠŸåœ°è¿”å›å“åº”
 			        if (httpResponse.getStatusLine().getStatusCode() == 200) {
-			            // »ñÈ¡·şÎñÆ÷ÏìÓ¦×Ö·û´®
+			        	// è·å–æœåŠ¡å™¨å“åº”å­—ç¬¦ä¸²
 			            String result = EntityUtils.toString(httpResponse.getEntity());
 			            successOrFail(1,result);
 			        }
@@ -156,15 +157,15 @@ public class DownData {
     }
     
     /**
-     * Êı¾İ¼ÓÔØ³É¹¦»òÊ§°Ü½øĞĞÊı¾İ´¦Àí
+     * å¯¹æˆåŠŸæˆ–æ˜¯å¤±è´¥è·å–æ•°æ®åçš„å¤„ç†
      *
-     *@param flag  1´ú±í³É¹¦£¬0´ú±íÊ§°Ü
-     *@param result ½á¹û²ÎÊı£¬³É¹¦·µ»Ø½á¹û£¬Ê§°Ü·µ»ØÊ§°ÜÏûÏ¢
+     *@param flag 1ä»£è¡¨æˆåŠŸï¼Œ0ä»£è¡¨å¤±è´¥
+     *@param result è¿”å›çš„ç»“æœï¼ŒæˆåŠŸè¿”å›æ•°æ®ï¼Œå¤±è´¥è¿”å›å¤±è´¥é—®é¢˜
      */
     private void successOrFail(int flag,String result){
     	Message msg=new Message();
 		Bundle data=new Bundle();
-		msg.what=flag;//what=1 ´ú±í³É¹¦
+		msg.what=flag;
         data.putString("result", result);
 		msg.setData(data);
 		mHandler.sendMessage(msg);
