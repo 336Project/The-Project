@@ -23,10 +23,10 @@ import android.os.Message;
 import android.util.Log;
 
 /**
- * ͨ��action���н���
- * @author κ����
+ * 数据下载的工具类
+ * @author 魏天武
  * @version 
- * @create_date 2014-10-29 ����9:38:56
+ * @create_date 2014-10-29 9:38:56
  */
 public class DownData {
 	// 创建HttpClient对象
