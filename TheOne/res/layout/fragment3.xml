@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/titlebar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="#ff006ebf" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:minWidth="82.0dip" >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" >
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/public_btn_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@null"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="15sp" 
+            android:text="我的"
+            />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+
+            <Button
+                android:id="@+id/public_btn_right"
+                android:layout_width="82.0dip"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="right|center"
+                android:paddingRight="18.0dip"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="2手黄海平" />
+
+</RelativeLayout>
