@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /***
- * 搜索相关接口访问类
+ * 搜索相关接口访问类（在线程中进行耗时操作，将结果通过listenter进行返回）
  * 
  * @author ZhongY
  * @Create_date 2014-07-09
