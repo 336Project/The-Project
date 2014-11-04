@@ -19,7 +19,6 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 /***
  * JSON转换工具类
- * @author ZhongY
  * @create 2014-04-25
  */
 public class JsonUtil {
