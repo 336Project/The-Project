@@ -21,7 +21,7 @@ import org.apache.http.util.EntityUtils;
 import com.example.theone.util.LogUtil;
 
 /**
- * 数据加载基类
+ * 数据加载基类(核心下载类，进行下载操作)
  * @author 魏天武
  * @version 
  * @create_date 2014-10-29 下午2:59:37

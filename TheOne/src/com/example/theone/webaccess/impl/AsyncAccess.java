@@ -12,7 +12,11 @@ import android.os.Message;
 import android.text.TextUtils;
 
 /***
+<<<<<<< HEAD
+ * 搜索相关接口访问类（在线程中进行耗时操作，将结果通过listenter进行返回）
+=======
  * 接口访问类
+>>>>>>> refs/remotes/origin/master
  * 
  * @Create_date 2014-07-09
  * 

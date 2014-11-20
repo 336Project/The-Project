@@ -7,6 +7,9 @@ import com.example.fragment.TabFragment2;
 import com.example.fragment.TabFragment3;
 import com.example.fragment.TabFragment4;
 import com.example.theone.R;
+import com.example.theone.R.layout;
+import com.example.theone.webaccess.impl.BaseAccess.WebServiceAccessListener;
+import com.example.theone.webaccess.impl.GetInform;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -50,7 +53,5 @@ public class MainActivity extends FragmentActivity {
 	private void initView() {
 		
 	}
-
-	
 
 }
